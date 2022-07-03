@@ -5,22 +5,23 @@ const size = 3;
 
 export default class Board {
     constructor() {
-        this.board = new Array(size * size);
+        this.Board = new Array(size * size);
 
         for (let i = 0; i < size * size - 1; i++) {
-            this.board[i] = new NumberedGamePiece(i);
+            this.Board[i] = new NumberedGamePiece(i);
         }
-        this.board[size * size - 1] = new EmptyGamePiece();
+        this.Board[size * size - 1] = new EmptyGamePiece();
+        this.Size = size;
     }
 
     TrySwapIndexes(index1, index2) {
 		if (!(this.CheckIfEmpty(index1) || this.CheckIfEmpty(index2))) {
 			return false;
 		}
-		[this.board[index1], this.board[index2]] = [this.board[index2], this.board[index1]];
+		[this.Board[index1], this.Board[index2]] = [this.Board[index2], this.Board[index1]];
 	}
 
     CheckIfEmpty(index) {
-        return this.board[index].value === "empty";
+        return this.Board[index].value === "empty";
     }
 }

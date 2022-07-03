@@ -1,5 +1,5 @@
-import NumberedGamePiece from "./Controller/GameController/GamePieces/NumberedGamePiece.js";
-import GamePieceView from "./View/GamePieceView.js";
+import GameBoard from "./Controller/GameController/GameBoard.js"
+import GameBoardView from "./View/GameBoardView.js";
 
-document.getElementsByClassName("game-board")[0].appendChild(new GamePieceView(new NumberedGamePiece(5)).getGamePieceDiv());
-document.getElementsByClassName("game-board")[0].appendChild(new GamePieceView(new NumberedGamePiece(5)).getGamePieceDiv());
+let gameBoard = new GameBoardView(new GameBoard());
+document.getElementsByClassName("content")[0].appendChild(gameBoard.getGameBoardDiv());

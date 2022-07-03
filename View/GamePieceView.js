@@ -10,8 +10,8 @@ export default class GamePieceView {
 
   getGamePieceDiv() {
     let gamePieceDiv = document.createElement("div");
-    gamePieceDiv.classList.add("game-piece-div");
-    gamePieceDiv.innerHTML=this.GamePiece.value;
+    gamePieceDiv.classList.add("game-piece");
+    gamePieceDiv.innerHTML=this.GamePiece.Value;
     return gamePieceDiv;
   }
 }
