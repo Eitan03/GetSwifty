@@ -1,4 +1,4 @@
-import BasicGamePiece from "./BasicGamePiece";
+import BasicGamePiece from "./BasicGamePiece.js";
 
 export default class EmptyGamePiece extends BasicGamePiece {
   constructor() {

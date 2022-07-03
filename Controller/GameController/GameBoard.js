@@ -1,5 +1,5 @@
-import NumberedGamePiece from "./GamePieces/NumberedGamePiece";
-import EmptyGamePiece from "./GamePieces/EmptyGamePiece";
+import NumberedGamePiece from "./GamePieces/NumberedGamePiece.js";
+import EmptyGamePiece from "./GamePieces/EmptyGamePiece.js";
 
 const size = 3;
 
