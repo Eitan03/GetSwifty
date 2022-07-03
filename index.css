@@ -5,8 +5,18 @@
   align-items: center;
 }
 
-.game-piece-div {
+.game-piece {
   padding: 5rem;
   margin: 1rem;
   border: 2px solid black;
+}
+
+.game-board {
+  display: flex;
+  flex-direction: column;
+}
+
+.game-board .row {
+  display: flex;
+  flex-direction: row;
 }
