@@ -11,7 +11,7 @@ export default class GameBoardView {
         this.GamePieces = new Map();
         this.GameBoard = gameBoard;
         for (let gamePiece of gameBoard.Board) {
-            this.GamePieces.set(gamePiece, new GamePieceView(gamePiece));
+            this.GamePieces.set(gamePiece.Id, new GamePieceView(gamePiece));
         }
     }
 
@@ -28,9 +28,10 @@ export default class GameBoardView {
 				curDiv = document.createElement("div");
 				curDiv.classList.add("row");
             }
-			curDiv.appendChild(this.GamePieces.get(this.GameBoard.Board[i]).getGamePieceDiv());
+			let gamePieceDiv = this.GamePieces.get(this.GameBoard.Board[i].Id).getGamePieceDiv();
+			gamePieceDiv.id += "-" + i;
+			curDiv.appendChild(gamePieceDiv);
         }
-		console.log(boardSize)
 		boardDiv.appendChild(curDiv);
 		return boardDiv;
     }

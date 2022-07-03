@@ -12,6 +12,8 @@ export default class GamePieceView {
     let gamePieceDiv = document.createElement("div");
     gamePieceDiv.classList.add("game-piece");
     gamePieceDiv.innerHTML=this.GamePiece.Value;
+    gamePieceDiv.id = "game-piece"
+    gamePieceDiv.setAttribute("draggable", "true");
     return gamePieceDiv;
   }
 }

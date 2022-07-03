@@ -12,6 +12,10 @@ export default class Board {
         this.ResetGame();
     }
 
+    FindGamePiece(id) {
+        return this.Board.find(gamePiece => id === gamePiece.Id);
+    }
+
     ResetGame() {
         for (let i = 0; i < size * size - 1; i++) {
             this.Board[i] = new NumberedGamePiece(i);
@@ -24,16 +28,23 @@ export default class Board {
 
     TrySwapIndexes(index1, index2) {
         if (!(this.CheckIfEmpty(index1) || this.CheckIfEmpty(index2))) {
+            console.log("swap was not seccussful");
             return false;
         }
         [this.Board[index1], this.Board[index2]] = [
             this.Board[index2],
             this.Board[index1],
         ];
+        // TODO maybe remove from here
+        document.dispatchEvent(new Event("swap"));
+        console.log("swap was seccussful");
+        return true;
     }
 
     CheckIfEmpty(index) {
-        return this.Board[index].value === "empty";
+        console.log("index");
+        console.log(index);
+        return this.Board[index].Value === "empty";
     }
 
     // TODO maybe inject this?
