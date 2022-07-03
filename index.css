@@ -6,8 +6,11 @@
 }
 
 .game-piece {
-  padding: 5rem;
-  margin: 1rem;
+  width: 10rem;
+  height: 10rem;
+  line-height: 10rem;
+  text-align: center;
+  margin: 0;
   border: 2px solid black;
 }
 
