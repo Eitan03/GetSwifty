@@ -1,0 +1,12 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-piece-div {
+  padding: 5rem;
+  margin: 1rem;
+  border: 2px solid black;
+}
