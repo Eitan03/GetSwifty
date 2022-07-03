@@ -1,10 +1,10 @@
-import BasicGamePiece from "./BasicGamePiece";
+import BasicGamePiece from "./BasicGamePiece.js";
 
-class NumberedGamePiece extends BasicGamePiece {
+export default class NumberedGamePiece extends BasicGamePiece {
   constructor(number) {
     if (!Number.isInteger(number)) {
-      throw new Error($`Invalid number was given to NumberedGamePiece! type {typeof number}: number`);
+      throw new Error(`Invalid number was given to NumberedGamePiece! type ${typeof number}: object: ${number}`);
     }
-    super.value = number
+    super(number)
   }
 }
