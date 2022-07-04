@@ -1,18 +1,16 @@
 import GameBoard from "./Controller/GameBoard.js";
 import GetGameBoardDiv from "./View/GetGameBoardDiv.js";
 import BoxesDraggingFunctionality from "./View/BoxesDraggingFunctionality.js";
-import Leaderboard from "./Model/Leaderboard.js";
+import LeaderboardManager from "./Controller/LeaderboardsManager.js";
 import ScoreTracker from "./Controller/ScoreTracker.js";
 import GetScoresDiv from "./View/GetScoresDiv.js";
 
 let gameBoard = new GameBoard(3, onSwap, onWin);
-window.gameBoard = gameBoard; // TODO remove this
 
 let boxesDraggingFunctionality = new BoxesDraggingFunctionality(onDragEnd);
 boxesDraggingFunctionality.addDraggingEvents(document.getElementsByClassName("board-content")[0]);
 
-let leaderboards = new Map();
-window.leaderboards = leaderboards; //TODO remove this
+let leaderboardManager = new LeaderboardManager();
 let scoreTracker = new ScoreTracker();
 window.scoreTracker = scoreTracker;
 scoreTracker.StartNewGame(gameBoard.Size);
@@ -47,10 +45,7 @@ function onWin() {
     let name = prompt("Congratulations! You Won!\nPlease Enter your name to save the score or press cancel in order for the score to not be saved");
     if (name !== null) {
         scoreTracker.User.name = name;
-        if (!leaderboards.has(gameBoard.Size)) {
-            leaderboards[gameBoard.Size] = new Leaderboard();
-        }
-        leaderboards[gameBoard.Size].AddScore(scoreTracker.GenerateScore());
+        leaderboardManager.getLeaderboard(gameBoard.Size).AddScore(scoreTracker.GenerateScore());
         updateLeaderboard();
     }
 }
@@ -65,6 +60,7 @@ function resetGame() {
 	gameBoard.ResetGame();
     updateBoard();
     scoreTracker.StartNewGame(gameBoard.Size);
+    updateLeaderboard();
     console.log("reset game");
 }
 
@@ -83,7 +79,7 @@ function updateLeaderboard() {
     let content = document.getElementsByClassName("leaderboard-content")[0];
     content.innerHTML = '';
     content.appendChild(GetScoresDiv(
-            leaderboards[gameBoard.Size].Scores
+            leaderboardManager.getLeaderboard(gameBoard.Size).Scores
         )
     );
 }
