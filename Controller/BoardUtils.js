@@ -2,20 +2,16 @@ import NumberedGamePiece from "../Model/GamePieces/NumberedGamePiece.js";
 import EmptyGamePiece from "../Model/GamePieces/EmptyGamePiece.js";
 
 export function checkIndexesNumberValid(index1, index2, size) {
-    return (
-        index1 < size*size &&
-        index2 < size*size
-    );
+    return index1 < size * size && index2 < size * size;
 }
 
 export function checkOnePieceEmpty(gamePiece1, gamePiece2) {
-    return ( checkIfEmpty(gamePiece1) || checkIfEmpty(gamePiece2) );
+    return checkIfEmpty(gamePiece1) || checkIfEmpty(gamePiece2);
 }
 
-export function checkIndexesNearEachOther(index1, index2, size){
+export function checkIndexesNearEachOther(index1, index2, size) {
     return (
-        Math.abs(index1 - index2) == 1 ||
-        Math.abs(index1 - index2) - size == 0
+        Math.abs(index1 - index2) == 1 || Math.abs(index1 - index2) - size == 0
     );
 }
 
@@ -45,11 +41,11 @@ export function isBoardSolvable(boardArr, size) {
 export function checkIfWon(boardArr) {
     let isWon = true;
     for (let i = 0; i < boardArr.length - 1; i++) {
-        isWon = (!isNaN(boardArr[i]) && boardArr[i]===(i+1))
+        isWon = !isNaN(boardArr[i]) && boardArr[i] === i + 1;
         if (!isWon) break;
     }
 
-    return isWon
+    return isWon;
 }
 
 export function shuffleArray(array) {

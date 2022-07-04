@@ -4,7 +4,14 @@ export default function GetScoresDiv(scores) {
     for (let score of scores) {
         let scoreDiv = document.createElement("li");
         scoreDiv.classList.add("score");
-        scoreDiv.innerText = score.level + " | " + score.user.name + " | " + score.moves + " | " + score.startingTime.toLocaleString();
+        scoreDiv.innerText =
+            score.level +
+            " | " +
+            score.user.name +
+            " | " +
+            score.moves +
+            " | " +
+            score.startingTime.toLocaleString();
         scoresDiv.appendChild(scoreDiv);
     }
     return scoresDiv;

@@ -4,11 +4,16 @@ export default class ScoreTracker {
         this.Level = boardSize + "x" + boardSize;
         this.User = {
             name: "unknown",
-        }
+        };
         this.Moves = 0;
     }
 
     GenerateScore() {
-        return { user: this.User, level: this.Level, startingTime: this.StartingTime, moves: this.Moves }
+        return {
+            user: this.User,
+            level: this.Level,
+            startingTime: this.StartingTime,
+            moves: this.Moves,
+        };
     }
 }

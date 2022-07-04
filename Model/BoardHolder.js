@@ -1,6 +1,6 @@
 export default class BoardHolder {
-    constructor(boardValuesArr){
-        this.pieces = boardValuesArr
+    constructor(boardValuesArr) {
+        this.pieces = boardValuesArr;
     }
 
     IsGameSaved() {
@@ -12,7 +12,7 @@ export default class BoardHolder {
     }
 
     GetAll() {
-        return this.pieces
+        return this.pieces;
     }
 
     Set(index, value) {

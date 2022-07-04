@@ -12,7 +12,11 @@ export default function GetGameBoardDiv(boardValues, boardSize, imagePath) {
             curDiv = document.createElement("div");
             curDiv.classList.add("row");
         }
-        let gamePieceDiv = GetGamePieceDiv(boardValues[i], boardSize, imagePath);
+        let gamePieceDiv = GetGamePieceDiv(
+            boardValues[i],
+            boardSize,
+            imagePath
+        );
         gamePieceDiv.id += "-" + i;
         curDiv.appendChild(gamePieceDiv);
     }
