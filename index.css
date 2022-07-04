@@ -25,7 +25,7 @@
   flex-direction: row;
 }
 
-#reset-game-form {
+.form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,12 +33,12 @@
   margin-top: 1rem;
 }
 
-.reset-game-form-content {
+.form-content {
   display: flex;
   flex-direction: row;
 }
 
-.reset-game-form-content div {
+.form-content div {
   margin-right: 10px;
 }
 

@@ -4,6 +4,7 @@ import BoxesDraggingFunctionality from "./View/BoxesDraggingFunctionality.js";
 import LeaderboardManager from "./Controller/LeaderboardsManager.js";
 import ScoreTracker from "./Controller/ScoreTracker.js";
 import GetScoresDiv from "./View/GetScoresDiv.js";
+import ImageLoader from "./View/ImageLoader.js";
 
 let gameBoard = new GameBoard(3, onSwap, onWin);
 
@@ -14,6 +15,10 @@ let leaderboardManager = new LeaderboardManager();
 let scoreTracker = new ScoreTracker();
 window.scoreTracker = scoreTracker;
 scoreTracker.StartNewGame(gameBoard.Size);
+
+const imageLoader = new ImageLoader("public/placeHolderImage.png", (imageURL) => {
+    updateBoard();
+});
 
 updateBoard();
 updateLeaderboard();
@@ -30,6 +35,13 @@ resetGameForm.addEventListener("submit", (e) => {
 	
 });
 
+let chooseImageForm = document.getElementById("choose-image-form");
+chooseImageForm.addEventListener("submit", (e) => {
+	e.preventDefault();
+	const imageFile = chooseImageForm['image'].files[0];
+    if(imageFile) imageLoader.ProccessImage(imageFile);
+});
+
 function onDragEnd(index1, index2) {
     if (
         index1 === undefined || index2 === undefined ||
@@ -41,7 +53,6 @@ function onDragEnd(index1, index2) {
 }
 
 function onWin() {
-    updateLeaderboard();
     let name = prompt("Congratulations! You Won!\nPlease Enter your name to save the score or press cancel in order for the score to not be saved");
     if (name !== null) {
         scoreTracker.User.name = name;
@@ -70,7 +81,8 @@ function updateBoard() {
     content.appendChild(
         GetGameBoardDiv(
             gameBoard.Board.Pieces.map((gamePiece) => gamePiece.Value),
-            gameBoard.Size
+            gameBoard.Size,
+            imageLoader.image
         )
     );
 }

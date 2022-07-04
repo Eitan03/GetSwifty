@@ -1,6 +1,4 @@
 export default class ScoreTracker {
-    constructor() {}
-
     StartNewGame(boardSize) {
         this.StartingTime = new Date();
         this.Level = boardSize + "x" + boardSize;

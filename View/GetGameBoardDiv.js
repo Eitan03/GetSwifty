@@ -1,6 +1,6 @@
 import GetGamePieceDiv from "./GetGamePieceDiv.js";
 
-export default function GetGameBoardDiv(boardValues, boardSize) {
+export default function GetGameBoardDiv(boardValues, boardSize, imagePath) {
     let boardDiv = document.createElement("div");
     boardDiv.classList.add("game-board");
     let curDiv;
@@ -12,7 +12,7 @@ export default function GetGameBoardDiv(boardValues, boardSize) {
             curDiv = document.createElement("div");
             curDiv.classList.add("row");
         }
-        let gamePieceDiv = GetGamePieceDiv(boardValues[i]);
+        let gamePieceDiv = GetGamePieceDiv(boardValues[i], boardSize, imagePath);
         gamePieceDiv.id += "-" + i;
         curDiv.appendChild(gamePieceDiv);
     }
