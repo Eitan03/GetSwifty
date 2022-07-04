@@ -1,4 +1,4 @@
-import GameBoard from "./Controller/GameController/GameBoard.js";
+import GameBoard from "./Controller/GameBoard.js";
 import getGameBoardDiv from "./View/GameBoardView.js";
 import BoxesDraggingFunctionality from "./View/BoxesDraggingFunctionality.js";
 

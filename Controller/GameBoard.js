@@ -68,7 +68,7 @@ export default class Board {
     }
 
     CheckIfEmpty(index) {
-        return this.Board[index].Value === "empty";
+        return this.Board[index] instanceof EmptyGamePiece;
     }
 
     // TODO maybe inject this?
