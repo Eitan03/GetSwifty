@@ -12,10 +12,6 @@ export default class Board {
         this.ResetGame();
     }
 
-    FindGamePiece(id) {
-        return this.Board.find(gamePiece => id === gamePiece.Id);
-    }
-
     ResetGame() {
         for (let i = 0; i < size * size - 1; i++) {
             this.Board[i] = new NumberedGamePiece(i);
@@ -27,11 +23,7 @@ export default class Board {
     }
 
     TrySwapIndexes(index1, index2) {
-        if (
-            (!(this.CheckIfEmpty(index1) || this.CheckIfEmpty(index2))) 
-            // TODO
-            || !((Math.abs(index1 - index2) == 1) || ((Math.abs(index1 - index2) % this.Size) == 0))
-            ) {
+        if (!this.CheckIfCanSwitch(index1, index2)) {
             console.log("swap was not seccussful");
             return false;
         }
@@ -45,9 +37,37 @@ export default class Board {
         return true;
     }
 
+    CheckIfCanSwitch(index1, index2) {
+        return (
+            this.CheckIfIndexesDefined(index1, index2) && 
+            this.CheckIndexesNumberValid(index1, index2) &&
+            this.CheckOneIndexEmpty(index1, index2) && 
+            this.CheckIndexesNearEachOther(index1, index2)
+            );
+    }
+
+    CheckIfIndexesDefined(index1, index2) {
+        return !((index1 === undefined) || (index2 === undefined));
+    }
+
+    CheckIndexesNumberValid(index1, index2) {
+        return (
+            !isNaN(index1) &&
+            !isNaN(index2) &&
+            index1 < this.Board.length &&
+            index2 < this.Board.length
+        );
+    }
+
+    CheckOneIndexEmpty(index1, index2) {
+        return ((!isNaN(index1) && this.CheckIfEmpty(index2)) || (this.CheckIfEmpty(index1) && !isNaN(index2)));
+    }
+
+    CheckIndexesNearEachOther(index1, index2) {
+        return (Math.abs(index1 - index2) == 1 || Math.abs(index1 - index2) % this.Size == 0)
+    }
+
     CheckIfEmpty(index) {
-        console.log("index");
-        console.log(index);
         return this.Board[index].Value === "empty";
     }
 

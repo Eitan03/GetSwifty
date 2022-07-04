@@ -1,9 +1,9 @@
 export default class BoxesDraggingFunctionality {
-    constructor(boardController) {
-        this.BoardController = boardController;
+    constructor(onDragEnd) {
+        this.onDragEnd = onDragEnd;
 
-        this.selectedPiece = undefined;
-        this.selectedDestination = undefined;
+        this.selectedPieceIndex = undefined;
+        this.selectedDestinationIndex = undefined;
     }
 
 
@@ -44,20 +44,12 @@ export default class BoxesDraggingFunctionality {
 	}
 
     DragEnd(gamePieceIndex) {
-		console.log(`ended number ${gamePieceIndex}`)
-		this.selectedPiece = gamePieceIndex;
+		this.selectedPieceIndex = gamePieceIndex;
 
 		// TODO move outta here
-        if (this.selectedPiece !== undefined && this.selectedDestination !== undefined
-            && !isNaN(this.selectedPiece) && !isNaN(this.selectedDestination)
-            ) {
-            console.log(`swapping ${this.selectedDestination} with ${this.selectedDestination}`);
-		    this.BoardController.TrySwapIndexes(this.selectedPiece, this.selectedDestination);
-        } else {
-            console.log(`Invalid Drop! ${this.selectedPiece} with ${this.selectedDestination}`);
-        }
-		this.selectedPiece = undefined;
-		this.selectedDestination = undefined;
+        this.onDragEnd(this.selectedPieceIndex, this.selectedDestinationIndex);
+		this.selectedPieceIndex = undefined;
+		this.selectedDestinationIndex = undefined;
 	}
 
     DragOver(gamePieceIndex) {
@@ -67,6 +59,6 @@ export default class BoxesDraggingFunctionality {
 
     Drop(gamePieceIndex) {
 		console.log(`dropped on number ${gamePieceIndex}`)
-		this.selectedDestination = gamePieceIndex
+		this.selectedDestinationIndex = gamePieceIndex
 	}
 }
