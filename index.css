@@ -1,0 +1,57 @@
+.content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.game-piece {
+	width: 10rem;
+	height: 10rem;
+	line-height: 10rem;
+	font-size: 3rem;
+	text-align: center;
+	margin: 0;
+	border: 2px solid black;
+}
+
+.game-board {
+	display: flex;
+	flex-direction: column;
+}
+
+.game-board .row {
+	display: flex;
+	flex-direction: row;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 1rem;
+}
+
+.form-content {
+	display: flex;
+	flex-direction: row;
+}
+
+.form-content div {
+	margin-right: 10px;
+}
+
+.choose-image {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.leaderboard {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
