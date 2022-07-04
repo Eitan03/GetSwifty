@@ -1,4 +1,4 @@
-export default function getGamePieceDiv(value) {
+export default function GetGamePieceDiv(value) {
     let gamePieceDiv = document.createElement("div");
     gamePieceDiv.classList.add("game-piece");
     gamePieceDiv.innerHTML = value;
