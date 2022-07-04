@@ -49,7 +49,7 @@ export default class BoxesDraggingFunctionality {
 
 		// TODO move outta here
         if (this.selectedPiece !== undefined && this.selectedDestination !== undefined
-            && isNaN(this.selectedPiece) && isNaN(this.selectedDestination)
+            && !isNaN(this.selectedPiece) && !isNaN(this.selectedDestination)
             ) {
             console.log(`swapping ${this.selectedDestination} with ${this.selectedDestination}`);
 		    this.BoardController.TrySwapIndexes(this.selectedPiece, this.selectedDestination);

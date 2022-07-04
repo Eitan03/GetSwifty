@@ -27,7 +27,11 @@ export default class Board {
     }
 
     TrySwapIndexes(index1, index2) {
-        if (!(this.CheckIfEmpty(index1) || this.CheckIfEmpty(index2))) {
+        if (
+            (!(this.CheckIfEmpty(index1) || this.CheckIfEmpty(index2))) 
+            // TODO
+            || !((Math.abs(index1 - index2) == 1) || ((Math.abs(index1 - index2) % this.Size) == 0))
+            ) {
             console.log("swap was not seccussful");
             return false;
         }
