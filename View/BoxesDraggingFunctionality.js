@@ -7,27 +7,27 @@ export default class BoxesDraggingFunctionality {
     }
 
 
-    addDraggingEvents() {
-        document.addEventListener("dragstart", (event) => {
+    addDraggingEvents(HTMLElement) {
+        HTMLElement.addEventListener("dragstart", (event) => {
             let gamePieceIndex = this.GetgamePieceIndex(event.target);
             if (gamePieceIndex !== undefined)
                 this.DragStart(gamePieceIndex);
         });
 
-		document.addEventListener("dragend", (event) => {
+		HTMLElement.addEventListener("dragend", (event) => {
             let gamePieceIndex = this.GetgamePieceIndex(event.target);
             if (gamePieceIndex !== undefined)
                 this.DragEnd(gamePieceIndex);
         });
 
-		document.addEventListener("dragover", (event) => {
+		HTMLElement.addEventListener("dragover", (event) => {
             event.preventDefault();
             let gamePieceIndex = this.GetgamePieceIndex(event.target);
             if (gamePieceIndex !== undefined)
                 this.DragOver(gamePieceIndex);
         });
 
-		document.addEventListener("drop", (event) => {
+		HTMLElement.addEventListener("drop", (event) => {
             let gamePieceIndex = this.GetgamePieceIndex(event.target);
             if (gamePieceIndex !== undefined)
                 this.Drop(gamePieceIndex);

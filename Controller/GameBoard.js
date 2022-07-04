@@ -1,5 +1,6 @@
-import NumberedGamePiece from "./GamePieces/NumberedGamePiece.js";
-import EmptyGamePiece from "./GamePieces/EmptyGamePiece.js";
+import NumberedGamePiece from "../Model/GamePieces/NumberedGamePiece.js";
+import EmptyGamePiece from "../Model/GamePieces/EmptyGamePiece.js";
+import BoardHolder from "../Model/BoardHolder.js";
 
 import * as BoardUtils from "./BoardUtils.js";
 
@@ -10,21 +11,19 @@ export default class Board {
         this.onWin = onWin;
         this.Won = false;
 
-        // TODO model array holder
         this.ResetGame();
     }
 
     ResetGame() {
         this.Won = false;
-        
-        this.Board = new Array(this.Size * this.Size);
+        this.Board = new BoardHolder(new Array(this.Size * this.Size));
         for (let i = 0; i < this.Size * this.Size - 1; i++) {
-            this.Board[i] = new NumberedGamePiece(i + 1);
+            this.Board.Pieces[i] = new NumberedGamePiece(i + 1);
         }
-        this.Board[this.Size * this.Size - 1] = new EmptyGamePiece();
+        this.Board.Pieces[this.Size * this.Size - 1] = new EmptyGamePiece();
         do {
-            BoardUtils.shuffleArray(this.Board);
-        } while (!BoardUtils.isBoardSolvable(this.Board, this.Size));
+            BoardUtils.shuffleArray(this.Board.Pieces);
+        } while (!BoardUtils.isBoardSolvable(this.Board.Pieces, this.Size));
     }
 
     TrySwapIndexes(index1, index2) {
@@ -36,16 +35,18 @@ export default class Board {
             console.log("swap was not seccussful");
             return false;
         }
-        [this.Board[index1], this.Board[index2]] = [
-            this.Board[index2],
-            this.Board[index1],
+        [this.Board.Pieces[index1], this.Board.Pieces[index2]] = [
+            this.Board.Pieces[index2],
+            this.Board.Pieces[index1],
         ];
+        
+        this.onSwap(index1, index2);
         // TODO remove from here
-        if (BoardUtils.checkIfWon(this.Board.map(gamePiece => gamePiece.Value))) {
+        if (BoardUtils.checkIfWon(this.Board.Pieces.map(gamePiece => gamePiece.Value))) {
             this.Won = true;
             this.onWin();
+            return true;
         }
-        this.onSwap(index1, index2);
         return true;
     }
 
@@ -54,7 +55,7 @@ export default class Board {
             BoardUtils.checkIfIndexesDefined(index1, index2) && 
             BoardUtils.checkIndexesNumberValid(index1, index2, this.Size) && 
             BoardUtils.checkIndexesNearEachOther(index1, index2, this.Size) &&
-            BoardUtils.checkOnePieceEmpty(this.Board[index1], this.Board[index2])
+            BoardUtils.checkOnePieceEmpty(this.Board.Pieces[index1], this.Board.Pieces[index2])
             );
     }
 }

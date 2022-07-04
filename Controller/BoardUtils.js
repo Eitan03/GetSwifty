@@ -1,5 +1,5 @@
-import NumberedGamePiece from "./GamePieces/NumberedGamePiece.js";
-import EmptyGamePiece from "./GamePieces/EmptyGamePiece.js";
+import NumberedGamePiece from "../Model/GamePieces/NumberedGamePiece.js";
+import EmptyGamePiece from "../Model/GamePieces/EmptyGamePiece.js";
 
 export function checkIfIndexesDefined(index1, index2) {
     return !(index1 === undefined || index2 === undefined);

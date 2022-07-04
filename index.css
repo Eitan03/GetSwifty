@@ -25,11 +25,18 @@
 }
 
 #reset-game-form {
-  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.reset-game-form-content {
   display: flex;
   flex-direction: row;
 }
 
-#reset-game-form div {
+.reset-game-form-content div {
   margin-right: 10px;
 }
