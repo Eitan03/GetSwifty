@@ -7,19 +7,47 @@ window.gameBoard = gameBoard; // TODO remove this
 let boxesDraggingFunctionality = new BoxesDraggingFunctionality(onDragEnd);
 boxesDraggingFunctionality.addDraggingEvents();
 
-document.getElementsByClassName("content")[0].appendChild(getGameBoardDiv(gameBoard.Board.map(gamePiece => gamePiece.Value), gameBoard.Size));
+document.getElementsByClassName("board-content")[0].appendChild(
+    getGameBoardDiv(
+        gameBoard.Board.map((gamePiece) => gamePiece.Value),
+        gameBoard.Size
+    )
+);
+
+let resetGameForm = document.getElementById("reset-game-form");
+resetGameForm.addEventListener("submit", (e) => {
+	e.preventDefault();
+	console.log("submitted");
+	if (isNaN(resetGameForm['size'].value) || Number.parseInt(resetGameForm['size'].value) <= 1) {
+		alert ("Invalid Size was given! Size has to be a number bigger then 1");
+		return;
+	} 
+	gameBoard.Size = Number.parseInt(resetGameForm['size'].value);
+	gameBoard.ResetGame();
+	updateBoard();
+	
+});
 
 function onDragEnd(index1, index2) {
     gameBoard.TrySwapIndexes(index1, index2);
 }
 
 function onWin() {
-  console.log("Won");
+    alert("You Won!");
 }
 
 function onSwap(index1, index2) {
-  console.log("Swapped!");
-  let content = document.getElementsByClassName("content")[0];
-  content.removeChild(content.lastChild);
-  content.appendChild(getGameBoardDiv(gameBoard.Board.map(gamePiece => gamePiece.Value), gameBoard.Size));
+    console.log("Swapped!");
+    updateBoard();
+}
+
+function updateBoard() {
+	let content = document.getElementsByClassName("board-content")[0];
+    content.removeChild(content.lastChild);
+    content.appendChild(
+        getGameBoardDiv(
+            gameBoard.Board.map((gamePiece) => gamePiece.Value),
+            gameBoard.Size
+        )
+    );
 }

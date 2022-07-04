@@ -11,13 +11,13 @@ export default class Board {
         this.Won = false;
 
         // TODO model array holder
-        this.Board = new Array(size * size);
         this.ResetGame();
     }
 
     ResetGame() {
         this.Won = false;
         
+        this.Board = new Array(this.Size * this.Size);
         for (let i = 0; i < this.Size * this.Size - 1; i++) {
             this.Board[i] = new NumberedGamePiece(i + 1);
         }
@@ -45,7 +45,6 @@ export default class Board {
             this.Won = true;
             this.onWin();
         }
-        console.log("swap was seccussful");
         this.onSwap(index1, index2);
         return true;
     }
