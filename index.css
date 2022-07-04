@@ -42,6 +42,13 @@
   margin-right: 10px;
 }
 
+.choose-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .leaderboard {
   display: flex;
   flex-direction: column;

@@ -1,5 +1,4 @@
 export default function GetScoresDiv(scores) {
-    // TODO make this html list
     let scoresDiv = document.createElement("ol");
     scoresDiv.classList.add("scoresList");
     for (let score of scores) {

@@ -6,14 +6,15 @@ import ScoreTracker from "./Controller/ScoreTracker.js";
 import GetScoresDiv from "./View/GetScoresDiv.js";
 import ImageLoader from "./View/ImageLoader.js";
 
-let gameBoard = new GameBoard(3, onSwap, onWin);
+let gameBoard = new GameBoard(2, onSwap, onWin);
+window.gameBoard = gameBoard;// TODO remove this
 
 let boxesDraggingFunctionality = new BoxesDraggingFunctionality(onDragEnd);
 boxesDraggingFunctionality.addDraggingEvents(document.getElementsByClassName("board-content")[0]);
 
 let leaderboardManager = new LeaderboardManager();
 let scoreTracker = new ScoreTracker();
-window.scoreTracker = scoreTracker;
+window.scoreTracker = scoreTracker; //TODO remove this
 scoreTracker.StartNewGame(gameBoard.Size);
 
 const imageLoader = new ImageLoader("public/placeHolderImage.png", (imageURL) => {
@@ -35,10 +36,10 @@ resetGameForm.addEventListener("submit", (e) => {
 	
 });
 
-let chooseImageForm = document.getElementById("choose-image-form");
-chooseImageForm.addEventListener("submit", (e) => {
+let chooseImageDiv = document.getElementById("choose-image-input");
+chooseImageDiv.addEventListener("change", (e) => {
 	e.preventDefault();
-	const imageFile = chooseImageForm['image'].files[0];
+	const imageFile = chooseImageDiv.files[0];
     if(imageFile) imageLoader.ProccessImage(imageFile);
 });
 
@@ -80,7 +81,7 @@ function updateBoard() {
     content.innerHTML = '';
     content.appendChild(
         GetGameBoardDiv(
-            gameBoard.Board.Pieces.map((gamePiece) => gamePiece.Value),
+            gameBoard.Board.GetAll().map((gamePiece) => gamePiece.Value),
             gameBoard.Size,
             imageLoader.image
         )

@@ -8,7 +8,6 @@ export default function GetGamePieceDiv(value, size, imagePath) {
         gamePieceDiv.style.backgroundPosition =  (((value-1) % size)*(100 / (size - 1) - 1))+ "% " +  (Math.floor((value-1) / size)*(100 / (size - 1) - 1))+ "%";
     }
 
-    gamePieceDiv.innerHTML = value;
 
     gamePieceDiv.classList.add("game-piece");
     gamePieceDiv.id = "game-piece";
