@@ -1,14 +1,8 @@
 import NumberedGamePiece from "../Model/GamePieces/NumberedGamePiece.js";
 import EmptyGamePiece from "../Model/GamePieces/EmptyGamePiece.js";
 
-export function checkIfIndexesDefined(index1, index2) {
-    return !(index1 === undefined || index2 === undefined);
-}
-
 export function checkIndexesNumberValid(index1, index2, size) {
     return (
-        !isNaN(index1) &&
-        !isNaN(index2) &&
         index1 < size*size &&
         index2 < size*size
     );
@@ -29,7 +23,6 @@ export function checkIfEmpty(gamePiece) {
     return gamePiece instanceof EmptyGamePiece;
 }
 
-// TODO maybe inject this?
 export function isBoardSolvable(boardArr, size) {
     let ReversedSize = 0;
     for (let i = 0; i < size * size - 1; i++) {

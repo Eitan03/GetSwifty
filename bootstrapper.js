@@ -11,8 +11,8 @@ window.gameBoard = gameBoard; // TODO remove this
 let boxesDraggingFunctionality = new BoxesDraggingFunctionality(onDragEnd);
 boxesDraggingFunctionality.addDraggingEvents(document.getElementsByClassName("board-content")[0]);
 
-let leaderboard = new Leaderboard();
-window.leaderboard = leaderboard; //TODO remove this
+let leaderboards = new Map();
+window.leaderboards = leaderboards; //TODO remove this
 let scoreTracker = new ScoreTracker();
 window.scoreTracker = scoreTracker;
 scoreTracker.StartNewGame(gameBoard.Size);
@@ -33,14 +33,26 @@ resetGameForm.addEventListener("submit", (e) => {
 });
 
 function onDragEnd(index1, index2) {
-    // TODO move some of the input validation here
+    if (
+        index1 === undefined || index2 === undefined ||
+        isNaN(index1) || isNaN(index2)
+    ) {
+        return;
+    }
     gameBoard.TrySwapIndexes(index1, index2);
 }
 
 function onWin() {
-    leaderboard.AddScore(scoreTracker.GenerateScore());
     updateLeaderboard();
-    alert("You Won!");
+    let name = prompt("Congratulations! You Won!\nPlease Enter your name to save the score or press cancel in order for the score to not be saved");
+    if (name !== null) {
+        scoreTracker.User.name = name;
+        if (!leaderboards.has(gameBoard.Size)) {
+            leaderboards[gameBoard.Size] = new Leaderboard();
+        }
+        leaderboards[gameBoard.Size].AddScore(scoreTracker.GenerateScore());
+        updateLeaderboard();
+    }
 }
 
 function onSwap(index1, index2) {
@@ -71,7 +83,7 @@ function updateLeaderboard() {
     let content = document.getElementsByClassName("leaderboard-content")[0];
     content.innerHTML = '';
     content.appendChild(GetScoresDiv(
-            leaderboard.Scores
+            leaderboards[gameBoard.Size].Scores
         )
     );
 }

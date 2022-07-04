@@ -39,9 +39,9 @@ export default class Board {
             this.Board.Pieces[index2],
             this.Board.Pieces[index1],
         ];
-        
+
         this.onSwap(index1, index2);
-        // TODO remove from here
+
         if (BoardUtils.checkIfWon(this.Board.Pieces.map(gamePiece => gamePiece.Value))) {
             this.Won = true;
             this.onWin();
@@ -52,7 +52,6 @@ export default class Board {
 
     CheckIfCanSwitch(index1, index2) {
         return (
-            BoardUtils.checkIfIndexesDefined(index1, index2) && 
             BoardUtils.checkIndexesNumberValid(index1, index2, this.Size) && 
             BoardUtils.checkIndexesNearEachOther(index1, index2, this.Size) &&
             BoardUtils.checkOnePieceEmpty(this.Board.Pieces[index1], this.Board.Pieces[index2])

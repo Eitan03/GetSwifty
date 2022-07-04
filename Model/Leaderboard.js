@@ -4,8 +4,8 @@ export default class LeaderBoard {
     }
 
     AddScore(score) {
-        let insertionIndex = -1;
-        for (let i = 0; ( i < this.Scores.length && this.Scores[i].moves > score.moves); i++ ) {
+        let insertionIndex = 0;
+        for (let i = 0; ( i < this.Scores.length && this.Scores[i].moves <= score.moves); i++ ) {
             insertionIndex++;
         }
         this.Scores.splice(insertionIndex, 0, score);

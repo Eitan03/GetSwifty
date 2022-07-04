@@ -9,6 +9,7 @@
   width: 10rem;
   height: 10rem;
   line-height: 10rem;
+  font-size: 3rem;
   text-align: center;
   margin: 0;
   border: 2px solid black;
@@ -39,4 +40,11 @@
 
 .reset-game-form-content div {
   margin-right: 10px;
+}
+
+.leaderboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
